@@ -3,13 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script type = "text/javascript">
+function validate() {
+	
+	if (document.pizzaForm.orderName.value == ""){
+		alert ("Name cannot be blank");
+		return false;
+	}
+	if (document.pizzaForm.pizzaQty.value == ""){
+		alert ("please choose a quantity");
+		return false;
+	}
+	else if (isNaN(document.pizzaForm.pizzaQty.value)){
+		alert ("Must enter a number");
+		return false;
+	}else if (document.pizzaForm.pizzaQty.value <= 0){
+		alert ("Must enter a positive number");
+		return false;
+	}else if(document.pizzaForm.pizzaQty.value % 1 !=0){
+		alert ("Must enter a whole number");
+		return false;
+	}
+	return (true);
+}
+
+</script>
+
 <meta charset="ISO-8859-1">
 <title>Pizza Order Page</title>
 </head>
 <body>
 <h1>Make selection from options below:</h1>
 <fieldset>
-<form action="pizzaOrderServlet" method="post">
+
+<form action="pizzaOrderServlet" method="post" name="pizzaForm" onsubmit = "return(validate());">
 What is your name?:
 <input type="text" name="orderName" size="10">
 <br>

@@ -3,6 +3,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script type = "text/javascript">
+function validate() {
+	
+	if (document.potatoForm.orderName.value == ""){
+		alert ("Name cannot be blank");
+		return false;
+	}
+	if (document.potatoForm.potatoQty.value == ""){
+		alert ("please choose a quantity");
+		return false;
+	}
+	else if (isNaN(document.potatoForm.potatoQty.value)){
+		alert ("Must enter a number");
+		return false;
+	}else if (document.potatoForm.potatoQty.value <= 0){
+		alert ("Must enter a positive number");
+		return false;
+	}else if(document.potatoForm.potatoQty.value % 1 !=0){
+		alert ("Must enter a whole number");
+		return false;
+	}
+	return (true);
+}
+
+</script>
+
 <meta charset="ISO-8859-1">
 <title>Potato Order Page</title>
 </head>
@@ -11,7 +38,7 @@
 <h1>Make selection from options below:</h1>
 
 <fieldset>
-<form action="potatoOrderServlet" method="post">
+<form action="potatoOrderServlet" method="post" name="potatoForm" onsubmit = "return(validate());">
 <label for="size">Choose a size:</label>
 
 <select name="size" id="size">
@@ -29,9 +56,9 @@ Choose quantity:
 <br>
 <label for="potatoStyle">Fully Loaded or plain?:</label>
 <select name="potatoStyle" id="potatoStyle">
-  <option value="small">Loaded</option>
-  <option value="medium">Plain</option>
-  <option value="medium">Loaded but on the side</option>
+  <option value="loaded">Loaded</option>
+  <option value="plain">Plain</option>
+  <option value="Loaded on side">Loaded but on the side</option>
 </select>
 
 <br>
